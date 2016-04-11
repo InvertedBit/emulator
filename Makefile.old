@@ -1,0 +1,38 @@
+CC := g++
+DEBUG := -g
+LD_FLAGS := 
+CC_FLAGS := -Wall
+SRC := $(shell pwd)/src
+OBJ := $(shell pwd)/obj
+BIN := $(shell pwd)/bin
+HDR := $(SRC)
+
+STRUCTURE := $(shell find $(SRC) -type d)
+
+CODEFILES := $(addsuffix /*,$(STRUCTURE))
+CODEFILES := $(wildcard $(CODEFILES))
+
+SRCFILES := $(filter %.cpp,$(CODEFILES))
+HDRFILES := $(filter %.h,$(CODEFILES))
+OBJFILES := $(subst $(SRC),$(OBJ),$(SRCFILES:%.cpp=%.o))
+
+LIBDEPS := $(filter-out $(OBJ)/main.o,$(OBJFILES))
+
+
+
+SOURCES := $(shell find $(SRC) -name '*.cpp')
+HEADERS := $(shell find $(SRC) -name '*.h')
+OBJECTS := $(addprefix $(OBJ)/,$(SOURCES:%.cpp=%.o))
+EXECUTABLE := emu
+
+$(EXECUTABLE) : $(OBJFILES)
+	$(CC) $(LD_FLAGS) $(OBJFILES) -o $(EXECUTABLE)
+
+$(OBJFILES): $(addprefix $(SRCDIR)/,%.cpp %.h)
+	$(CC) -c $< -o $@ $(CC_FLAGS)
+
+
+.PHONY: clean
+
+clean:
+	rm -rf ./*.o

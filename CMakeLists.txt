@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8.12.2)
+project(emulator)
+
+
+include_directories(inc)
+
+file(GLOB SOURCES "src/*.cpp")
+
+
+add_executable(bin/emu ${SOURCES})

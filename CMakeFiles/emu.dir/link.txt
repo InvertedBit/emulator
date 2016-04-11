@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/emu.dir/src/Computer.cpp.o CMakeFiles/emu.dir/src/main.cpp.o CMakeFiles/emu.dir/src/Socket.cpp.o CMakeFiles/emu.dir/src/Mainboard.cpp.o CMakeFiles/emu.dir/src/Pin.cpp.o  -o emu -rdynamic 
